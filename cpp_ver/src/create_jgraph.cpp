@@ -71,6 +71,10 @@ int main(int argc, char *argv[]){
     for (i = 0; i < num_bottles; i++){
         border_l = "BORDER";
         border_r = "BORDER";
+
+        // put number above bottle
+        jgraph_pts << "NUMBER " << x << " y " << y+3 << " : " << i+1 << endl;
+        
         for (j = 0; j < num_blocks; j++){
 
             // print block
@@ -83,6 +87,7 @@ int main(int argc, char *argv[]){
                 border_l += buf;
                 sprintf(buf, " %lf %lf ", (x + marksize_x - (marksize_x / 2)), (y+(marksize_y / 2)) + 0.25);
                 border_r += buf;
+                
            
             } else {
                 sprintf(buf, " %lf %lf ", (x - (marksize_x / 2)), (y + 1));

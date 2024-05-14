@@ -29,4 +29,5 @@ shell : grep BORDER points.txt | sed 's/^BORDER //g' | awk '{printf ("copycurve 
 (* Bottle Bottoms *)
 shell : grep BOTTOM points.txt | awk '{printf ("newline bezier poly pcfill %lf %lf %lf linethickness 5 color %lf %lf %lf pts %lf %lf  %lf %lf  %lf %lf  %lf %lf\n", $3, $4, $5, $3, $4, $5, $7, $8, $9, $10, $11, $12, $13, $14)} {printf ("newline bezier linethickness 5 color .627 .627 .627 pts %lf %lf  %lf %lf  %lf %lf  %lf %lf\n", $7, $8, $9, $10, $11, $12, $13, $14)}'
 
-
+(* Bottle Numbers *)
+shell : grep NUMBER points.txt | sed 's/^NUMBER //g' | awk '{printf ("newstring font Helvetica-Bold fontsize 14 lcolor .125 .549 .729 hjc vjt x ")} {print}'
