@@ -26,8 +26,6 @@
 #include <fstream>
 #include <cstring>
 #include <sstream>
-#include <sys/wait.h>
-#include <unistd.h>
 using namespace std;
 
 /* load_level
@@ -438,144 +436,43 @@ bool ColorSort::bottles_valid(int from, int to){
 }
 
 
+/* print_level_data()
+ * prints the level's data to stdout. 
+ * It prints num_bottles, num_blocks, then the color value for each bottle's 
+ * blocks, starting with the 1st bottle's top block and ending with the last 
+ * bottle's bottom block, on 1 line with each value separated with a space. 
+ * 
+ * Parameters: 
+ *   ostream &stream: stream you'd like to print the display to. cout 
+ *     for stdout or a filestream for a file.   */
+void ColorSort::print_level_data(ostream& stream){
 
-bool ColorSort::create_jgraph(){
+    size_t i;
 
-    int i, j;
-    double x, y;
-    double display_x = 10;
-    double display_y = 33;
-    double x_border = 1;
-    double x_bottle_spacing = 2;
-    double y_bottle_spacing = 2;
-    double marksize_x = 1;
-    double marksize_y = 2;
-    double rowsize;
-    ofstream jgraph_pts;
-
-    // open jgraph output
-    jgraph_pts.open("points.txt");
-    if (jgraph_pts.fail()){
-        cerr << "points.txt: " << strerror(errno) << endl;
-        cerr << "Color Sort jpg creation failed.\n" << endl;
-        return false;
-    }  
-
-/*
-    // adjust y spacing depending on how many rows
-    if (rows == 3){
-        marksize_x = 1;
-        marksize_y = 2;
-        y = display_y;
-    } else if (rows == 2){
-        y_bottle_spacing = 7;
-        marksize_x = 1.5;
-        marksize_y = 3;
-        y = display_y;
-    } else {
-        y_bottle_spacing = 8;
-        marksize_x = 1;
-        marksize_y = 2;
+    stream << rows << " " << cols << " " << num_bottles << " " << num_blocks << " ";
+    for (i = 0; i < bottles.size(); i++){
+        stream << bottles[i] << " ";
     }
+    stream << endl;
+}
 
-    y_bottle_spacing = display_y - (rows * (marksize_y * num_bottles)) - 2;
-    
-    // adjust x spacing depending on how many cols
-    if (cols == 5){
-        x_bottle_spacing = 2;
-        x = 1;
-    } else if (cols == 4){
-    } else if (cols == 3){
-    } else if (cols == 2){
-        x_bottle_spacing = (display_x - (marksize_x * cols)) / (cols + 1) + marksize_x;
-        x_border = x_bottle_spacing + (marksize_x / 2) - marksize_x;
-    }
-*/
+int ColorSort::get_rows(){
 
-    // adjust block size based on number of rows
-    // figure out bottle sizes
-    // keep blocks at 1:2 ratio
-    // keep separation under 4
-    // maximize size with sep of 4, then 3 if doesn't fit, then 2
-    // want evenly spaced from 1 10
-    // (num_bottles * cols) * (marksize_x + x_bottle_spacing) == 10
+    return rows;
+}
 
-    // want evenly spaced from 1 30
-    // marksize_y at least 2
-    // (num_blocks * rows) * (marksize_y + y_bottle_spacing) == 30
+int ColorSort::get_cols(){
+    return cols;
+}
 
-    // start with bottle 1 in upper left corner
-    x = x_border;
-    y = display_y;
+int ColorSort::get_blocks(){
+    return num_blocks;
+}
 
-    for (i = 0; i < num_bottles; i++){
-        // print bottles
-        char buf[1000];
-        string border_l = "BORDER";
-        string border_r = "BORDER";
-        for (j = 0; j < num_blocks; j++){
-            // print block
-            jgraph_pts << "BLOCK color " << bottles[i*num_blocks + j] << " " << marksize_x << " " << marksize_y << " pts " << x << " " << y << endl;
+vector <int> ColorSort::get_bottles(){
+    return bottles;
+}
 
-            // border around the block
-            if (j == 0){
-                sprintf(buf, " %lf %lf ", (x - (marksize_x / 2)), (y + 0.25 + (marksize_y / 2)));
-                border_l += buf;
-                sprintf(buf, " %lf %lf ", (x + marksize_x - (marksize_x / 2)), (y+(marksize_y / 2)) + 0.25);
-                border_r += buf;
-           
-            } else {
-                sprintf(buf, " %lf %lf ", (x - (marksize_x / 2)), (y + 1));
-                border_l += buf;
-                sprintf(buf, " %lf %lf ", (x + marksize_x - (marksize_x / 2)), (y + 1));
-                border_r += buf;
-           } 
-           y -= marksize_y;
-
-        }
-        
-        // complete the side borders
-        sprintf(buf, " %lf %lf ", (x - (marksize_x / 2)), (y + (marksize_y / 2)));
-        border_l += buf;
-        sprintf(buf, " %lf %lf ", (x + marksize_x - (marksize_x / 2)), (y + (marksize_y / 2)));
-        border_r += buf;
-        jgraph_pts << border_l << endl << border_r << endl;
-
-        // bottom border
-        sprintf(buf, " %lf %lf  %lf %lf  %lf %lf  %lf %lf ", (x - (marksize_x / 2)), (y+ (marksize_y / 2)), (x - .25), y, (x + .25), y, (x+(marksize_x / 2)), (y + (marksize_y / 2)));
-        jgraph_pts << "BOTTOM color " << bottles[i*num_blocks + (j-1)] << " pts" << buf << endl;
- 
-         rowsize = (marksize_y * num_blocks) + y_bottle_spacing;
-         y = display_y - ( ( (i+1) / cols) * rowsize);
-
-         // move to next row
-         if ((i+1) % cols == 0){
-            x = x_border;
-            // moving to next column on same row
-         } else {
-             x += x_bottle_spacing;
-                                                         
-         }
-    }
-
-
-    jgraph_pts.close();
-
-    pid_t pid;
-    pid = fork();
-    if (pid == 0){
-        execlp("./create_jgraph.sh", "./create_jgraph.sh", NULL);
-        cerr << "Could not create jgraph. execlp (play)\n";
-        return false;
-
-    } else if (pid == 1) {
-        int status;
-        waitpid(pid, &status, -1);
-    } else {
-        cerr << "Could not create jgraph.(play)\n";
-        return false;
-    }
-
-    return true;
-
+int ColorSort::get_num_bottles(){
+    return num_bottles;
 }

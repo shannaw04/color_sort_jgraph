@@ -1,1 +1,0 @@
-jgraph/jgraph -P jgr/logo.jgr | ps2pdf - | convert -density 300 - -quality 100 jpgs/logo.jpg

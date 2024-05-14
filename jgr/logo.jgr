@@ -1,0 +1,20 @@
+newgraph
+
+xaxis min 0 max 10 size 4.75 grid_lines grid_gray .7 nodraw
+yaxis min 0 max 40 size 8 grid_lines grid_gray .7 nodraw
+
+(* Background *)
+newcurve marktype box marksize 20 40 color .894 .918 .941 cfill .894 .918 .941 pts 5 20
+
+(* Title *)
+newstring font Helvetica-Bold fontsize 40 rotate 5 lcolor .125 .549 .729 hjc vjt x .7 y 36 : C
+newstring font Helvetica-Bold fontsize 40 lcolor .69 .165 .314 hjc vjt x 1.6 y 35 : O
+newstring font Helvetica-Bold fontsize 40 rotate -5 lcolor 871 .871 .196 hjc vjt x 2.5 y 36 : L
+newstring font Helvetica-Bold fontsize 40 lcolor .369 .878 1 hjc vjt x 3.4 y 35 : O
+newstring font Helvetica-Bold fontsize 40 rotate 5 lcolor .192 .788 .192 hjc vjt x 4.3 y 36 : R
+newstring font Helvetica-Bold fontsize 40 lcolor .588 .169 .588 hjc vjt x 6.1 y 35 : S
+newstring font Helvetica-Bold fontsize 40 rotate -5 lcolor .969 .329 .49 hjc vjt x 7.0 y 36 : O
+newstring font Helvetica-Bold fontsize 40 lcolor 1 .588 .271 hjc vjt x 7.9 y 35 : R
+newstring font Helvetica-Bold fontsize 40 rotate 5 lcolor .8 .6 1. hjc vjt x 8.8 y 36 : T
+newstring font Helvetica-Bold fontsize 40 lcolor .69 .165 .314 hjc vjt x 9.5 y 35 : !
+

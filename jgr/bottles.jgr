@@ -1,0 +1,10 @@
+newgraph
+xaxis min 0 max 12 size 8 nodraw
+yaxis min 0 max 12 size 8 nodraw
+
+newcurve marktype box marksize 1.5 1.5 linetype solid color 0 255 255 cfill 0 255 255
+         pts 1 4  1 3  1 2  1 1  
+newcurve marktype box marksize 1.5 1.5 linetype solid color 255 255 0 cfill 255 255 0
+         pts 4 4  4 3  4 2  4 1  
+newcurve marktype box marksize 1.5 1.5 linetype solid color 192 192 192 cfill 192 192 192
+         pts 7 4  7 3  7 2  7 1

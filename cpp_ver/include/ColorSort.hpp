@@ -47,6 +47,9 @@ public:
     // a welcome message or gameplay instructions
     void print_msg_file(const std::string &filename); 
 
+    // Print the level data string
+    void print_level_data(std::ostream& stream);
+
     // Figures out if colors can be moved from "from" to "to" 
     // and how many blocks of colors with be moved
     bool make_move(int from, int to);      
@@ -73,6 +76,15 @@ public:
     int num_bottles_complete();       
 
     bool create_jgraph();
+
+    // returns rows and cols
+    int get_rows();
+    int get_cols();
+
+    // return num_blocks and bottles
+    int get_blocks();
+    int get_num_bottles();
+    std::vector <int> get_bottles();
 
 protected:
 	std::vector <int> bottles;      // Current state of bottles
