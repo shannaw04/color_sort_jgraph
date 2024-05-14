@@ -72,6 +72,8 @@ public:
     // Return the number of bottles that have been completed so far
     int num_bottles_complete();       
 
+    bool create_jgraph();
+
 protected:
 	std::vector <int> bottles;      // Current state of bottles
     std::vector <int> bottles_init; // Initial state of bottles
@@ -80,4 +82,6 @@ protected:
     int num_bottles;                 // Number of bottles in the level
     int completed_bottles;           // Number of completed bottles so far
     int completed_init;              // Initial number of completed bottles
+    int rows;
+    int cols;
 };

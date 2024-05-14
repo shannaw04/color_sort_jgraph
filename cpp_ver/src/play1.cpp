@@ -41,11 +41,12 @@ int main(int argc, char *argv[]) {
     ifstream input_file; // File to read input from
     ColorSort *game = new ColorSort;  // Game
 
-   
+ 
     if (argc != 2){
         cerr << "Usage: " << argv[0] << " <input_file>\n";
         return -1;
     }
+
 
     // Open file with game data
     input_file.open(argv[1]);
@@ -69,7 +70,7 @@ int main(int argc, char *argv[]) {
     input_file.close();
 
     // Play level
-    game->print_msg_file(WELCOME_MSG);
+    // game->print_msg_file(WELCOME_MSG);
     while (game->level_complete() == false){
         game->print_bottles();
         
