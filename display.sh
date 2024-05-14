@@ -1,8 +1,4 @@
-cd cpp_ver
-make
-cd ..
-rm -f img/colorsort.jpg
-cat $1 | cpp_ver/bin/create_jgraph
+echo $1 | cpp_ver/bin/create1 | cpp_ver/bin/create_jgraph
 
 # Replace the color val with the rgb values it corresponds to
 # color val n corresponds to line n in colors file (starting at 0)
@@ -14,5 +10,6 @@ done < "colors.txt"
 
 
 ./jgraph -P colorsort.jgr > colorsort.ps
-#gs -o img/colorsort.jpg -sDEVICE=pngalpha -g375x300 -dLastPage=1 -c "<</Install {-118 -530 translate}>> setpagedevice" -f colorsort.ps
-gs -o img/colorsort.jpg -sDEVICE=pngalpha -dLastPage=1 -f colorsort.ps
+#gs -o img/colorsort.jpg -sDEVICE=pngalpha -g344x551 -dLastPage=1 -c "<</Install {-106 -684 translate}>> setpagedevice" -f colorsort.ps
+gs -o img/colorsort.jpg -sDEVICE=pngalpha -g344x551 -dLastPage=1 -c "<</Install {-133 -120 translate}>> setpagedevice" -f colorsort.ps > /dev/null 2>&1
+echo "img/colorsort.jpg"
