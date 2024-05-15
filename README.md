@@ -36,6 +36,9 @@ Then you choose the bottles you'd like to move from and to from the drop down me
 #### The Console Version
 Since I didn't get the permission issues figured out with my website, the game will have to played using the command line.<br>
 You input the numbers of the bottles you'd like to move to and from separated by a space, and it will apply the move and update the jpg as described above. <br>
+![welcome](pics/initial.jpg)
+![welcome](pics/1stmove.jpg)
+
 
 #### The Gameplay Programs
 bin/play1 <input-file><br>
