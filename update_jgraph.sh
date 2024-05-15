@@ -8,5 +8,5 @@ while IFS= read -r line; do
 done < "colors.txt"
 
 ./jgraph -P colorsort.jgr > out.ps
-gs -o colorsort.jpg -sDEVICE=pngalpha -g344x551 -dLastPage=1 -c "<</Install {-133 -100 translate}>> setpagedevice" -f out.ps >tmp.txt
-rm tmp.txt
+gs -o colorsort.jpg -sDEVICE=pngalpha -g344x551 -dLastPage=1 -c "<</Install {-133 -120 translate}>> setpagedevice" -f out.ps >tmp.txt
+rm -f tmp.txt
