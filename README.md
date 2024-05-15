@@ -28,6 +28,7 @@ new_level.sh inputs the requested number of colors into the level generator prog
 It then replaces the color values for the different colors of the blocks with rgb values from colors.txt.<br>
 ./jgraph is then called to create the graph. colorsort.jgr uses grep, awk, and sed to extract the points from points.txt and generate the jgraph input. Since the machine for volweb hosting doesn't have convert, I had to use Ghostscript to convert the output from postcript to jpg. <br>
 Finally, it echos the url of the picture, which the webpage displays!<br><br>
+<br>
 ![game](pics/game.jpg)
 <Br>
 Then you choose the bottles you'd like to move from and to from the drop down menus and it'll send your move to move.sh, which calls bin/make_move to execute the move. It then calls create_jgraph, jgraph, and gs as described above to create the jpg of the updated output, overwriting the jpg file. The page reloads to display the new output.
@@ -36,8 +37,8 @@ Then you choose the bottles you'd like to move from and to from the drop down me
 ### The Console Version
 Since I didn't get the permission issues figured out with my website, the game will have to played using the command line.<br>
 You input the numbers of the bottles you'd like to move to and from separated by a space, and it will apply the move and update the jpg as described above. <br>
-![welcome](pics/initial.jpg)
-![welcome](pics/1stmove.jpg)
+![welcome](pics/initial.jpg)<br>
+![welcome](pics/1stmove.jpg)<br>
 
 
 ### The Gameplay Programs
