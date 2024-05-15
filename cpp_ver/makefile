@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall
-EXE = bin/play1 bin/play bin/create1 bin/create_set bin/create_jgraph
+EXE = bin/play1 bin/play bin/create1 bin/create_set bin/create_jgraph bin/make_move
 
 all: $(EXE)
 
@@ -17,6 +17,9 @@ bin/play: src/play.cpp src/ColorSort.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 bin/create_jgraph: src/create_jgraph.cpp src/ColorSort.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+bin/make_move: src/make_move.cpp src/ColorSort.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 .PHONY: clean
