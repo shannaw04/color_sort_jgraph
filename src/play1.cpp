@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
     // game->print_msg_file(WELCOME_MSG);
     while (game->level_complete() == false){
         game->print_bottles();
-        game->create_jgraph();
+        game->jgraph_create();
         
         cin.clear();
         cout << "ENTER MOVE: ";
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
     }
 
     game->print_bottles();
-    game->create_jgraph();
+    game->jgraph_create();
     cout << "\n**********  LEVEL COMPLETE!  **********\n\n";
     return 0;
 }

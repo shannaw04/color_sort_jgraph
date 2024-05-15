@@ -86,7 +86,7 @@ public:
     int get_num_bottles();
     std::vector <int> get_bottles();
 
-    bool ColorSort::jgraph_create();
+    bool jgraph_create();
 
 protected:
 	std::vector <int> bottles;      // Current state of bottles

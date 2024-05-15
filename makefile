@@ -22,7 +22,8 @@ bin/create_jgraph: src/create_jgraph.cpp src/ColorSort.cpp
 bin/make_move: src/make_move.cpp src/ColorSort.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-
+run: bin/play 
+	bin/play games/1per.txt
 
 .PHONY: clean
 clean:

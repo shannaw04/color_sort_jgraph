@@ -490,7 +490,7 @@ bool ColorSort::jgraph_create(){
 
     // to create the jgraph
     double x, y;
-    double display_x = 10;
+    //double display_x = 10;
     double display_y = 33;
     double x_border = 1;
     double x_bottle_spacing = 2;
@@ -576,15 +576,15 @@ bool ColorSort::jgraph_create(){
     pid_t pid;
     pid = fork();
     if (pid == 0){
-        execlp("./create_jgraph.sh", "./create_jgraph.sh", NULL);
-        cerr << "Could not create jgraph. execlp (play)\n";
+        execlp("./update_jgraph.sh", "./update_jgraph.sh", NULL);
+        cerr << "Could not create jgraph " << strerror(errno) << endl;
         return false;
 
     } else if (pid == 1) {
         int status;
         waitpid(pid, &status, -1);
     } else {
-        cerr << "Could not create jgraph.(play)\n";
+        //cerr << "Could not create jgraph\n";
         return false;
     }
 

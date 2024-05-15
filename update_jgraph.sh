@@ -1,5 +1,6 @@
 # Replace the color val with the rgb values it corresponds to
 # color val n corresponds to line n in colors file (starting at 0)
+
 color_val=0
 while IFS= read -r line; do
     sed -i "s/color $color_val /$line /g" "points.txt"

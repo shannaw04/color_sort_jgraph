@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 
     // game info
     ColorSort *cs = new ColorSort;
-    int rows;
+    //int rows;
     int cols;
     int num_blocks;
     vector <int> bottles;
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
 
     // to create the jgraph
     double x, y;
-    double display_x = 10;
+   // double display_x = 10;
     double display_y = 33;
     double x_border = 1;
     double x_bottle_spacing = 2;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
         return -1;
     }
 
-    rows = cs->get_rows();
+    //rows = cs->get_rows();
     cols = cs->get_cols();
     num_blocks = cs->get_blocks();
     bottles = cs->get_bottles();
