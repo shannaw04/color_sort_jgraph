@@ -22,13 +22,13 @@ Since a Color Sort game with no colors is very sad, for this project, I decided 
 #### The Website Attempt
 My plan was to host it on volweb at https://volweb2.utk.edu/~swalla16/color_sort/ so the player wouldn't have to manually refresh the jpg after every move, but I had difficulties getting the php exec calls to actually update the jpg. It updates if I run the commands from terminal, but not from the browser, so I'm guessing some issues with file permissions are going on that were above my (very low) web dev skill level to figure out in a short time frame. But, here is a description of what I attempted to do there anyway:<br><br>
 You're greeted with a welcome page that calls a shell script (make_logo.sh) that generates the logo jpg. You choose the number of colors you'd like your level to have from the drop down menu and click the button, which runs a new_level.sh shell script to generate the level. 
-![launch page](pics/welcome.png)
+![welcome](pics/welcome.jpg)
 <br><br>
 new_level.sh inputs the requested number of colors into the level generator program, then pipes the level data into bin/create_jgraph, which creates a file (points.txt) of jgraph points for the game components.<br>
 It then replaces the color values for the different colors of the blocks with rgb values from colors.txt.<br>
 ./jgraph is then called to create the graph. colorsort.jgr uses grep, awk, and sed to extract the points from points.txt and generate the jgraph input. Since the machine for volweb hosting doesn't have convert, I had to use Ghostscript to convert the output from postcript to jpg. <br>
 Finally, it echos the url of the picture, which the webpage displays!<br><br>
-![launch page](pics/initial.png)
+![game](pics/game.jpg)
 <Br>
 Then you choose the bottles you'd like to move from and to from the drop down menus and it'll send your move to move.sh, which calls bin/make_move to execute the move. It then calls create_jgraph, jgraph, and gs as described above to create the jpg of the updated output, overwriting the jpg file. The page reloads to display the new output.
 
