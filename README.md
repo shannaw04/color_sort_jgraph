@@ -14,7 +14,7 @@ You may have to manually refresh the jpg after each move, depending on the progr
 # Project Details
 ## The Initial C++ Color Sort Implementation
 I initially wrote a level generator that creates levels given a number of colors, as well as a game play program that takes user input from stdin and prints output to the console in simple ASCII art using letters instead of colors:
-![initial state](instr_pics/initial.png)
+![initial state](pics/initial.png)
 
 ## The Jgraph Implementation
 Since a Color Sort game with no colors is very sad, for this project, I decided to use Jgraph to create a colorful display for my Color Sort game. 
