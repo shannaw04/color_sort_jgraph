@@ -1,0 +1,33 @@
+newgraph
+
+xaxis min 0 max 14 size 4.75 grid_lines grid_gray .7 nodraw
+yaxis min -10 max 48 size 8 grid_lines grid_gray .7 nodraw
+
+(* Background *)
+newcurve marktype box marksize 14 58 cfill .894 .918 .941 color .894 .918 .941 pts 7 19
+
+(* Title *)
+newstring font Helvetica-Bold fontsize 42 rotate 5 lcolor .125 .549 .729 hjc vjt x 1 y 44 : C
+newstring font Helvetica-Bold fontsize 42 lcolor .69 .165 .314 hjc vjt x 2.4 y 43 : O
+newstring font Helvetica-Bold fontsize 42 rotate -5 lcolor 871 .871 .196 hjc vjt x 3.7 y 44 : L
+newstring font Helvetica-Bold fontsize 42 lcolor .369 .878 1 hjc vjt x 5 y 43 : O
+newstring font Helvetica-Bold fontsize 42 rotate 5 lcolor .192 .788 .192 hjc vjt x 6.2 y 44 : R
+newstring font Helvetica-Bold fontsize 42 lcolor .588 .169 .588 hjc vjt x 8.5 y 43 : S
+newstring font Helvetica-Bold fontsize 42 rotate -5 lcolor .969 .329 .49 hjc vjt x 9.9 y 44 : O
+newstring font Helvetica-Bold fontsize 42 lcolor 1 .588 .271 hjc vjt x 11.1 y 43 : R
+newstring font Helvetica-Bold fontsize 42 rotate 5 lcolor .8 .6 1. hjc vjt x 12.1 y 44 : T
+newstring font Helvetica-Bold fontsize 42 lcolor .69 .165 .314 hjc vjt x 13 y 43 : !
+
+(* Color Blocks *)
+newcurve marktype box 
+shell : grep BLOCK points.txt | awk '{printf "copycurve color %lf %lf %lf cfill %lf %lf %lf marksize %lf %lf pts %lf %lf\n", $3, $4, $5, $3, $4, $5, $6, $7, $9, $10}'
+
+(* Bottle Borders *)
+newcurve linetype solid marktype none linethickness 5 color .627 .627 .627  
+shell : grep BORDER points.txt | sed 's/^BORDER //g' | awk '{printf ("copycurve pts ")} {print}'
+
+(* Bottle Bottoms *)
+shell : grep BOTTOM points.txt | awk '{printf ("newline bezier poly pcfill %lf %lf %lf linethickness 5 color %lf %lf %lf pts %lf %lf  %lf %lf  %lf %lf  %lf %lf\n", $3, $4, $5, $3, $4, $5, $7, $8, $9, $10, $11, $12, $13, $14)} {printf ("newline bezier linethickness 5 color .627 .627 .627 pts %lf %lf  %lf %lf  %lf %lf  %lf %lf\n", $7, $8, $9, $10, $11, $12, $13, $14)}'
+
+(* Bottle Numbers *)
+shell : grep NUMBER points.txt | sed 's/^NUMBER //g' | awk '{printf ("newstring font Helvetica-Bold fontsize 14 lcolor .125 .549 .729 hjc vjt x ")} {print}'
