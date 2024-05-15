@@ -1,7 +1,7 @@
 # Color Sort! Jgraph Edition
-Shanna Wallace
-Jgraph Lab
-COSC 494
+Shanna Wallace<br>
+Jgraph Lab<br>
+COSC 494<br>
 Spring 2024
 
 ## Overview
